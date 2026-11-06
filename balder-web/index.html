@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Balder — Barbería</title>
+<meta name="description" content="Barbería Balder: elige tu corte antes de sentarte, reserva online, trenzas, tinte y Ganga Balder a domicilio.">
+<link rel="icon" href="img/logo-balder.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===== INTRO: telón con el logo que se deshace en ceniza ===== -->
+<div id="intro" class="intro" aria-hidden="true">
+  <canvas></canvas>
+  <img class="intro__logo-simple" src="img/logo-balder-completo.png" alt="">
+  <button id="intro-saltar" class="intro__saltar" type="button">Saltar intro</button>
+</div>
+
+<a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+<!-- ===== CABECERA ===== -->
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="#inicio" aria-label="Balder, inicio">
+      <img class="marca__logo" src="img/logo-balder.png" alt="" width="44" height="44">
+      <span class="marca__nombre">Balder</span>
+    </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="menu" class="menu" aria-label="Principal">
+      <a href="#estilos">Estilos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#reserva">Reservar</a>
+      <a href="#productos">Productos</a>
+      <a href="#socios">Socios</a>
+      <a href="#app">App</a>
+      <a href="#visita">Visítanos</a>
+      <button class="boton boton--linea menu__carrito" type="button" data-abrir-carrito aria-haspopup="dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L20 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        Carrito (<span id="carrito-num" aria-live="polite">0</span>)
+      </button>
+      <button class="boton boton--oro" type="button" id="boton-cuenta" aria-haspopup="dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <span id="cuenta-texto">Cuenta</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ===== PORTADA ===== -->
+<section id="inicio" class="contenedor portada">
+  <div class="portada__texto">
+    <p class="etiqueta">Barbería · Trenzas · Color · A domicilio</p>
+    <h1 class="titulo-xl">Elige tu corte antes de sentarte.</h1>
+    <p class="entradilla">Mira los estilos en modelos reales, elige el tuyo, reserva y paga online. Si en la silla cambias de idea, lo cambiamos sin que pierdas dinero.</p>
+    <div class="botones">
+      <a class="boton boton--oro boton--grande" href="#estilos">Ver estilos</a>
+      <a class="boton boton--linea boton--grande" href="#reserva">Reservar cita</a>
+    </div>
+  </div>
+  <!-- Fila de modelos (inclusividad): cada foto lleva a su estilo ya filtrado (js/main.js) -->
+  <ul class="portada__fotos" aria-label="Estilos destacados">
+    <li><a class="modelo" href="#estilos" data-ir-largo="corto"><img src="img/portada/corto.jpg" alt="Modelo con corte corto texturizado y degradado"><span>Corto + look</span></a></li>
+    <li><a class="modelo" href="#estilos" data-ir-largo="largo"><img src="img/portada/largo.jpg" alt="Modelo con pelo largo ondulado" loading="lazy"><span>Pelo largo</span></a></li>
+    <li><a class="modelo" href="#servicios"><img src="img/portada/trenzas.jpg" alt="Modelo con trenzas y abalorios" loading="lazy"><span>Trenzas</span></a></li>
+    <li><a class="modelo" href="#estilos" data-ir-cat="Afro"><img src="img/portada/afro.jpg" alt="Modelo con afro fade y línea" loading="lazy"><span>Afro fade</span></a></li>
+    <li><a class="modelo" href="#estilos" data-ir-cat="K-pop"><img src="img/portada/kpop.jpg" alt="Modelo con corte K-pop" loading="lazy"><span>K-pop</span></a></li>
+  </ul>
+</section>
+
+<!-- ===== ESTILOS ===== -->
+<section id="estilos" class="seccion seccion--borde">
+  <div class="contenedor">
+    <div class="seccion__cabeza">
+      <h2 class="titulo-l">Ejemplos de estilos</h2>
+      <p>Corto y largo, para todo tipo de pelo y de persona. Cada foto es un estilo que puedes elegir y añadir a tu cita.</p>
+    </div>
+
+    <div class="pestanas" role="tablist" aria-label="Modo de elegir estilo">
+      <span class="pestanas__indicador" aria-hidden="true"></span>
+      <button class="pestana" role="tab" aria-selected="true" aria-controls="panel-fotos" id="tab-fotos">Fotos</button>
+      <button class="pestana" role="tab" aria-selected="false" aria-controls="panel-dudas" id="tab-dudas">¿Tienes dudas?</button>
+      <button class="pestana" role="tab" aria-selected="false" aria-controls="panel-ia" id="tab-ia">Cita + escáner IA</button>
+    </div>
+
+    <div id="panel-fotos" class="panel" role="tabpanel" aria-labelledby="tab-fotos">
+      <div class="filtros" aria-label="Filtrar por largo">
+        <span class="filtros__titulo">Largo</span>
+        <button class="chip" data-largo="todos" aria-pressed="true">Todos</button>
+        <button class="chip" data-largo="corto" aria-pressed="false">Corto</button>
+        <button class="chip" data-largo="largo" aria-pressed="false">Largo</button>
+      </div>
+      <div class="filtros" aria-label="Filtrar por categoría">
+        <span class="filtros__titulo">Categoría</span>
+        <button class="chip" data-cat="todas" aria-pressed="true">Todas</button>
+        <button class="chip" data-cat="Punk" aria-pressed="false">Punk</button>
+        <button class="chip" data-cat="Militar" aria-pressed="false">Militar</button>
+        <button class="chip" data-cat="Over connected" aria-pressed="false">Over connected</button>
+        <button class="chip" data-cat="Casual" aria-pressed="false">Casual</button>
+        <button class="chip" data-cat="Street" aria-pressed="false">Street</button>
+        <button class="chip" data-cat="Drill" aria-pressed="false">Drill</button>
+        <button class="chip" data-cat="Dominicano" aria-pressed="false">Dominicano</button>
+        <button class="chip" data-cat="Colombiano" aria-pressed="false">Colombiano</button>
+        <button class="chip" data-cat="Peaky Blinders" aria-pressed="false">Peaky Blinders</button>
+        <button class="chip" data-cat="Afro" aria-pressed="false">Afro</button>
+        <button class="chip" data-cat="K-pop" aria-pressed="false">K-pop</button>
+      </div>
+
+      <div class="rejilla-estilos" id="rejilla-estilos">
+        <!-- Primera opción visible: explicar el corte en tienda -->
+        <article class="tarjeta-explicar">
+          <p class="etiqueta">Primera opción</p>
+          <h3>¿Nada coincide con lo que buscas?</h3>
+          <p>Reserva y explícale tu corte al barbero en la tienda. Trae una foto o cuéntanoslo.</p>
+          <button class="boton boton--oro" type="button" data-explicar>Explicarlo en tienda</button>
+        </article>
+        <!-- Las tarjetas de estilo se generan desde js/main.js (lista ESTILOS) -->
+      </div>
+      <p class="aviso-vacio" id="sin-estilos" hidden>No hay estilos con esos filtros todavía.</p>
+    </div>
+
+    <div id="panel-dudas" class="panel panel--dos" role="tabpanel" aria-labelledby="tab-dudas" hidden>
+      <div>
+        <h3 class="titulo-m">¿Tienes dudas?</h3>
+        <p>Si no sabes qué te queda bien, reserva sin elegir estilo. El barbero te asesora en la silla según tu cara, tu pelo y tu ropa.</p>
+      </div>
+      <div class="lista-filas">
+        <details><summary>¿Puedo cambiar de estilo en la tienda?</summary><p>Sí. Si pagaste online puedes renunciar al estilo elegido o cambiarlo por otro sin perder dinero.</p></details>
+        <details><summary>¿Hay reembolso en el pago online?</summary><p>No. El pago online no se reembolsa, pero se conserva para el cambio de estilo.</p></details>
+        <details><summary>¿Y si pago en la tienda?</summary><p>Reservas la cita y te llega el aviso, pero no puedes elegir estilo en el carrito.</p></details>
+        <details><summary>¿Cómo funciona la membresía?</summary><p>Pagas una cuota al mes y tienes servicios incluidos. La permanencia mínima es de 3 meses y te puedes dar de baja con 15 días de aviso. Los servicios que no uses no se acumulan.</p></details>
+        <details><summary>¿Qué es el horario valle del plan Socio?</summary><p>De lunes a jueves, antes de las 16:00. Fuera de ese horario el corte se cobra a precio normal.</p></details>
+        <details><summary>¿Y si no me presento a la cita?</summary><p>Avísanos con 24 horas. Si un socio no se presenta, el servicio cuenta como usado.</p></details>
+      </div>
+    </div>
+
+    <div id="panel-ia" class="panel panel--dos" role="tabpanel" aria-labelledby="tab-ia" hidden>
+      <div>
+        <h3 class="titulo-m">Cita + sesión de escáner IA</h3>
+        <p>Nuestro modelo de IA genera fotos de cómo te quedaría cada estilo antes de cortar.</p>
+        <a class="boton boton--oro" href="#reserva" data-con-escaner>Reservar con escáner</a>
+      </div>
+      <div class="rejilla-3">
+        <div class="caja"><p class="etiqueta">Online</p><strong>Con tus propias fotos</strong><p>Subes tus fotos al reservar. Solo con pago online.</p></div>
+        <div class="caja"><p class="etiqueta">En tienda</p><strong>Foto en el local</strong><p>Te hacemos la foto allí. Requiere pago por adelantado.</p></div>
+        <div class="caja"><p class="etiqueta">Socios</p><strong>Generador en la app</strong><p>Integrado en la aplicación solo para socios.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section id="servicios" class="seccion seccion--clara">
+  <div class="contenedor dos-columnas">
+    <div class="dos-columnas__lado">
+      <h2 class="titulo-l">Servicios</h2>
+      <p>En el local o a domicilio con Ganga Balder (solo socios).</p>
+    </div>
+    <div class="dos-columnas__main">
+      <ul class="carta">
+        <li><div><h3>Corte normal</h3><p>Corte a máquina y tijera, lavado y peinado · 30 min</p></div><span class="precio">28 €</span><button class="boton boton--negro" type="button" data-reservar="Corte normal">Reservar</button></li>
+        <li><div><h3>Corte + cejas o barba</h3><p>Corte con arreglo de cejas o de barba, a elegir · 40 min</p></div><span class="precio">36 €</span><button class="boton boton--negro" type="button" data-reservar="Corte + cejas o barba">Reservar</button></li>
+        <li><div><h3>Corte + cejas y barba</h3><p>El servicio completo en una sola cita · 50 min</p></div><span class="precio">44 €</span><button class="boton boton--negro" type="button" data-reservar="Corte + cejas y barba">Reservar</button></li>
+        <li><div><h3>Tinte</h3><p>Color completo, mechas o decoloración · 60 min</p></div><span class="precio">65 €</span><button class="boton boton--negro" type="button" data-reservar="Tinte">Reservar</button></li>
+        <li class="carta__trenzas">
+          <h3>Trenzas</h3>
+          <div class="rejilla-2">
+            <!-- data-fotos: nº de fotos en img/estilos/<id>-N.jpg; 0 = hueco. El carrusel lo monta js/main.js -->
+            <div class="caja caja--clara trenza">
+              <div class="foto" data-carrusel="trenzasdom" data-nombre="Trenzas dominicanas" data-fotos="10"><span>[FOTO MODELO]</span></div>
+              <strong>Dominicanas</strong><p>5 diseños · 100 min</p><span class="precio">95 €</span>
+              <button class="boton boton--negro" type="button" data-reservar="Trenzas dominicanas">Reservar</button>
+            </div>
+            <div class="caja caja--clara trenza">
+              <div class="foto" data-carrusel="trenzasafr" data-nombre="Trenzas africanas" data-fotos="10"><span>[FOTO MODELO]</span></div>
+              <strong>Africanas</strong><p>Rastas · 5 diseños · 210 min, extensiones incluidas</p><span class="precio">199 €</span>
+              <button class="boton boton--negro" type="button" data-reservar="Trenzas africanas / rastas">Reservar</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p class="nota-iva">Precios con IVA (21 %) incluido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESERVA ===== -->
+<section id="reserva" class="seccion seccion--oscura">
+  <div class="contenedor reserva">
+    <form class="reserva__form" id="form-reserva" novalidate>
+      <h2 class="titulo-l">Reserva</h2>
+
+      <fieldset>
+        <legend>1 · Dónde</legend>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="lugar" value="local" checked><span><strong>En el local</strong><small>[DIRECCIÓN DEL LOCAL]</small></span></label>
+          <label class="opcion"><input type="radio" name="lugar" value="casa"><span><strong>Ganga Balder · a domicilio</strong><small>Solo socios · incluido en Socio Balder, 25 € en los demás planes</small></span></label>
+        </div>
+        <p class="aviso" id="aviso-domicilio" hidden>Ganga Balder (a domicilio) solo está disponible con membresía. <a href="#socios">Hazte socio</a></p>
+        <div class="campo" id="campo-direccion" hidden>
+          <label for="direccion">Dirección para Ganga Balder</label>
+          <input id="direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Calle, número, piso y ciudad">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2 · Servicio</legend>
+        <div class="opciones opciones--chips">
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Corte normal" checked><span>Corte normal <em>28 €</em></span></label>
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Corte + cejas o barba"><span>Corte + cejas o barba <em>36 €</em></span></label>
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Corte + cejas y barba"><span>Corte + cejas y barba <em>44 €</em></span></label>
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Tinte"><span>Tinte <em>65 €</em></span></label>
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Trenzas dominicanas"><span>Trenzas dominicanas <em>95 €</em></span></label>
+          <label class="opcion opcion--chip"><input type="radio" name="servicio" value="Trenzas africanas / rastas"><span>Trenzas africanas / rastas <em>199 €</em></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3 · Pago</legend>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="pago" value="online" checked><span><strong>Pago online</strong><small>Eliges estilo en el carrito y escáner IA con tus fotos</small></span></label>
+          <label class="opcion"><input type="radio" name="pago" value="tienda"><span><strong>Pago en tienda</strong><small>Solo reservas la cita, sin elegir estilo</small></span></label>
+        </div>
+        <div class="aviso" id="aviso-online">
+          <p><strong>Sin reembolso, sin perder dinero.</strong> El pago online no se devuelve, pero en la tienda puedes renunciar al estilo elegido o cambiarlo por otro.</p>
+        </div>
+        <label class="check"><input type="checkbox" id="con-escaner"><span>Añadir sesión de escáner IA <em id="precio-escaner">6 €</em></span></label>
+        <div class="campo" id="campo-fotos" hidden>
+          <label for="fotos">Tus fotos para el escáner IA (hasta 5, de frente y de perfil)</label>
+          <input id="fotos" type="file" accept="image/*" multiple>
+          <div class="fotos-previa" id="fotos-previa" aria-live="polite"></div>
+        </div>
+        <p class="aviso" id="aviso-tienda" hidden>Te llegará la notificación de la cita, pero la selección de estilo en el carrito no está disponible. El escáner IA en tienda se paga por adelantado.</p>
+      </fieldset>
+
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="fecha">4 · Día</label>
+          <input id="fecha" name="fecha" type="date" required>
+        </div>
+        <div class="campo">
+          <label for="hora">5 · Hora</label>
+          <select id="hora" name="hora" required>
+            <option value="">Elige una hora</option>
+            <option>10:00</option><option>10:45</option><option>11:30</option><option>12:15</option>
+            <option>16:00</option><option>16:45</option><option>17:30</option><option>18:15</option><option>19:00</option>
+          </select>
+        </div>
+      </div>
+      <fieldset>
+        <legend>6 · Tus datos</legend>
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono (para el aviso de la cita)</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="600 000 000" required>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" id="acepto" required><span>He leído y acepto la <button class="enlace" type="button" data-legal="privacidad">política de privacidad</button></span></label>
+      </fieldset>
+      <p class="nota-socio" id="nota-socio" hidden></p>
+      <p class="error" id="error-reserva" role="alert" hidden></p>
+    </form>
+
+    <aside id="resumen" class="resumen" aria-label="Resumen de tu reserva">
+      <p class="etiqueta">Tu reserva</p>
+      <dl>
+        <div><dt>Dónde</dt><dd id="r-lugar">En el local</dd></div>
+        <div><dt>Servicio</dt><dd id="r-servicio">Corte normal</dd></div>
+        <div><dt>Estilo</dt><dd id="r-estilo">Lo explicas en tienda</dd></div>
+        <div><dt>Pago</dt><dd id="r-pago">Online (sin reembolso)</dd></div>
+        <div><dt>Cita</dt><dd id="r-cita">Elige día y hora</dd></div>
+        <div><dt>Productos</dt><dd id="r-productos">Ninguno</dd></div>
+      </dl>
+      <dl class="resumen__cuentas">
+        <div><dt>Servicio</dt><dd id="r-p-servicio">28,00 €</dd></div>
+        <div id="fila-escaner" hidden><dt>Escáner IA</dt><dd id="r-p-escaner"></dd></div>
+        <div id="fila-ganga" hidden><dt>Suplemento Ganga Balder</dt><dd id="r-p-ganga"></dd></div>
+        <div><dt>Productos</dt><dd id="r-total">—</dd></div>
+        <div class="resumen__total"><dt>Pagas ahora</dt><dd id="r-ahora">28,00 €</dd></div>
+        <div id="fila-tienda" hidden><dt>Pagas en la tienda</dt><dd id="r-tienda"></dd></div>
+      </dl>
+      <p class="nota">Precios con IVA (21 %) incluido.</p>
+      <button class="boton boton--oro boton--grande" type="submit" form="form-reserva" id="boton-confirmar">Pagar y reservar</button>
+      <button class="boton boton--linea" type="button" data-abrir-carrito>Ver carrito</button>
+      <p class="ok" id="ok-reserva" role="status" hidden>Cita guardada. Te llegará el aviso al móvil.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== PRODUCTOS ===== -->
+<section id="productos" class="seccion">
+  <div class="contenedor">
+    <div class="seccion__cabeza">
+      <h2 class="titulo-l">Productos Balder</h2>
+      <p>Línea profesional de cuidado y estilo. El resultado de la barbería, en casa.</p>
+    </div>
+    <img class="productos__linea" src="img/productos/linea-balder.jpg" alt="Línea completa de productos Balder: champú, acondicionador, tinte, cera, gomina y aceite de barba" loading="lazy">
+    <div class="rejilla-productos" id="rejilla-productos">
+      <!-- Generado desde js/main.js (lista PRODUCTOS) -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIOS ===== -->
+<section id="socios" class="seccion seccion--oro">
+  <div class="contenedor">
+    <div class="seccion__cabeza">
+      <h2 class="titulo-l">Membresía Balder</h2>
+      <p>Una cuota al mes con tus cortes incluidos. Ahorras entre un 26 % y un 30 % frente a pagarlos sueltos.</p>
+    </div>
+    <div class="rejilla-3">
+      <article class="plan" data-plan-tarjeta="socio"><h3>Socio</h3><p class="plan__precio"><strong>39 €</strong> / mes</p><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>2 cortes al mes en horario valle (lunes a jueves antes de las 16:00)</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Escáner IA online incluido</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>10 % de descuento en productos</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Ganga Balder con 25 € de suplemento</span></li></ul><button class="boton boton--claro" type="button" data-plan="socio">Hacerme socio</button></article>
+      <article class="plan plan--destacado" data-plan-tarjeta="plus"><p class="plan__sello">El más elegido</p><h3>Socio Plus</h3><p class="plan__precio"><strong>59 €</strong> / mes</p><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>2 cortes con cejas o barba al mes, a cualquier hora</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Escáner IA online incluido</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Merchandising Balder cada trimestre</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>15 % de descuento en productos</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Ganga Balder con 25 € de suplemento</span></li></ul><button class="boton boton--claro" type="button" data-plan="plus">Hacerme socio</button></article>
+      <article class="plan" data-plan-tarjeta="balder"><h3>Socio Balder</h3><p class="plan__precio"><strong>129 €</strong> / mes</p><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>2 servicios completos al mes (corte, cejas y barba)</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>1 visita Ganga Balder a domicilio al mes incluida</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>1 producto Balder de regalo al mes</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Generador IA en la app y prioridad de reserva</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>20 % de descuento en productos</span></li></ul><button class="boton boton--claro" type="button" data-plan="balder">Hacerme socio</button></article>
+    </div>
+    <p class="socios__condiciones">Cuotas con IVA incluido. Permanencia mínima de 3 meses y baja con 15 días de aviso. Los servicios no usados no se acumulan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APP ===== -->
+<section id="app" class="seccion">
+  <div class="contenedor app">
+    <div class="app__movil"><span>[CAPTURA APP]</span></div>
+    <div class="app__texto">
+      <h2 class="titulo-l">La app Balder</h2>
+      <div class="lista-filas">
+        <div><strong>Todas tus citas en el móvil</strong><p>Cada cita se guarda en la app y te avisa antes, en el local o con Ganga Balder.</p></div>
+        <div><strong>Los mismos estilos que en la web</strong><p>Filtra por categoría, elige y paga desde el móvil.</p></div>
+        <div><strong>Generador IA para socios</strong><p>Mira cómo te quedaría un corte antes de reservarlo.</p></div>
+      </div>
+      <div class="botones">
+        <a class="boton boton--linea" href="#app" data-pronto>[App Store]</a>
+        <a class="boton boton--linea" href="#app" data-pronto>[Google Play]</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISÍTANOS ===== -->
+<section id="visita" class="seccion seccion--borde">
+  <div class="contenedor visita">
+    <div class="visita__datos">
+      <h2 class="titulo-l">Visítanos</h2>
+      <div class="dato"><p class="etiqueta">Dirección</p><p>[CALLE Y NÚMERO]<br>[CÓDIGO POSTAL, CIUDAD]</p></div>
+      <div class="dato"><p class="etiqueta">Contacto</p><p><a href="tel:+34000000000">[TELÉFONO]</a><br><a href="mailto:hola@gangabalder.es">hola@gangabalder.es</a></p></div>
+      <a class="boton boton--oro" href="#reserva">Reservar cita</a>
+    </div>
+    <dl class="horario">
+      <div><dt>Lunes a jueves</dt><dd>10:00 – 20:00 <small>valle hasta las 16:00</small></dd></div>
+      <div><dt>Viernes</dt><dd>10:00 – 21:00</dd></div>
+      <div><dt>Sábado</dt><dd>10:00 – 15:00</dd></div>
+      <div><dt>Domingo</dt><dd>Cerrado</dd></div>
+      <div><dt>Ganga Balder</dt><dd>Martes a sábado, con cita</dd></div>
+    </dl>
+    <div class="foto visita__mapa"><span>[MAPA]</span></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== PIE ===== -->
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <div class="pie__marca">
+      <img src="img/logo-balder.png" alt="" width="120" height="120">
+      <span>Balder</span>
+    </div>
+    <nav class="pie__redes" aria-label="Redes sociales">
+      <p class="etiqueta">Redes</p>
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://tiktok.com">TikTok</a>
+      <a href="#inicio">www.gangabalder.es</a>
+      <small>© [AÑO] Balder</small>
+    </nav>
+    <nav class="pie__legal" aria-label="Información legal">
+      <p class="etiqueta">Legal</p>
+      <button class="enlace" type="button" data-legal="aviso">Aviso legal</button>
+      <button class="enlace" type="button" data-legal="privacidad">Política de privacidad</button>
+      <button class="enlace" type="button" data-legal="cookies">Política de cookies</button>
+      <button class="enlace" type="button" data-legal="condiciones">Condiciones de la membresía</button>
+    </nav>
+  </div>
+</footer>
+
+<!-- ===== PANELES (js/acciones.js) ===== -->
+<dialog class="panel-lateral" id="dlg-carrito" aria-labelledby="t-carrito">
+  <div class="panel-lateral__cabeza"><h2 id="t-carrito">Tu carrito</h2><button class="cerrar" type="button" data-cerrar aria-label="Cerrar carrito"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="panel-lateral__cuerpo" id="carrito-cuerpo"></div>
+  <div class="panel-lateral__pie">
+    <div class="carrito-total"><span>Total productos</span><strong id="carrito-total">0,00 €</strong></div>
+    <a class="boton boton--oro boton--grande" href="#reserva" data-cerrar>Ir a reservar y pagar</a>
+    <button class="boton boton--linea" type="button" data-cerrar>Seguir mirando</button>
+  </div>
+</dialog>
+
+<dialog class="modal" id="dlg-cuenta" aria-labelledby="t-cuenta">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div id="cuenta-cuerpo"></div>
+</dialog>
+
+<dialog class="modal" id="dlg-socio" aria-labelledby="t-socio">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div id="socio-cuerpo"></div>
+</dialog>
+
+<dialog class="modal modal--confirmacion" id="dlg-confirmacion" aria-labelledby="t-confirmacion">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <svg class="sello-ok" width="88" height="88" viewBox="0 0 88 88" aria-hidden="true"><circle cx="44" cy="44" r="40"/><path d="M26 45l12 12 24-26"/></svg>
+  <div id="confirmacion-cuerpo"></div>
+</dialog>
+
+<dialog class="modal modal--producto" id="dlg-producto" aria-labelledby="t-producto">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div id="producto-cuerpo"></div>
+</dialog>
+
+<dialog class="modal modal--legal" id="dlg-legal" aria-labelledby="t-legal">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div id="legal-cuerpo"></div>
+</dialog>
+
+<dialog class="visor" id="dlg-visor" aria-label="Fotos ampliadas">
+  <button class="cerrar" type="button" data-cerrar aria-label="Cerrar fotos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="visor__flecha visor__flecha--ant" type="button" aria-label="Foto anterior"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <figure><img id="visor-img" alt=""><figcaption id="visor-pie"></figcaption></figure>
+  <button class="visor__flecha visor__flecha--sig" type="button" aria-label="Foto siguiente"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</dialog>
+
+<div class="avisos" id="avisos" aria-live="polite"></div>
+<canvas class="chispas" id="chispas" aria-hidden="true"></canvas>
+<button class="subir" type="button" id="subir" aria-label="Volver arriba"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+
+<script src="js/logo-data.js"></script>
+<script src="js/intro.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animaciones.js"></script>
+<script src="js/acciones.js"></script>
+</body>
+</html>
